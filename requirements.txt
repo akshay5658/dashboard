@@ -1,0 +1,6 @@
+selenium
+requests
+pandas
+beautifulsoup4
+glob
+csv
