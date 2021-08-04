@@ -20,14 +20,17 @@ try:
 except:
     pass
 cwd = os.getcwd()
-PATH = "/app/.chromedriver/bin/chromedriver/chromedriver.exe"
+#PATH = "/app/.chromedriver/bin/chromedriver/chromedriver.exe"
 chromeOptions= webdriver.ChromeOptions()
+chromeOptions.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 chromeOptions.add_argument('--headless')
+chromeOptions.add_argument("--disable-dev-shm-usage")
+chromeOptions.add_argument("--no-sandbox")
 prefs = {"download.default_directory" : cwd+"\\download"}
 chromeOptions.add_experimental_option("prefs",prefs)
 
 def start_driver():
-    driver = webdriver.Chrome(PATH,chrome_options=chromeOptions)
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"),chrome_options=chromeOptions)
     return driver
 
 def start_page(source):
